@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="closeModal()" slot="start">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
+    <ion-title>Novo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="onSaveClick()">  
+    <ion-item>
+      <ion-label position="floating">Titulo do anuncio</ion-label>
+      <ion-input placeholder="Ex.: Celular Galaxy S10" formControlName="title"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Tipo do produto</ion-label>
+      <ion-select interface="popover" formControlName="type">
+        <ion-select-option value="0">Celulares</ion-select-option>
+        <ion-select-option value="1">Móveis</ion-select-option>
+        <ion-select-option value="2">Eletrodoméstico</ion-select-option>
+        <ion-select-option value="3">Utilidades Domésticas</ion-select-option>
+        <ion-select-option value="4">Tv e Vídeo</ion-select-option>
+        <ion-select-option value="5">Informática</ion-select-option>
+        <ion-select-option value="6">Serviços</ion-select-option>
+        <ion-select-option value="7">Comida</ion-select-option>
+        <ion-select-option value="8">Roupas e Calçados</ion-select-option>
+        <ion-select-option value="9">Acessórios de Vestuário</ion-select-option>
+        <ion-select-option value="10">Outros</ion-select-option>
+      </ion-select>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Valor</ion-label>
+      <ion-input currencyMask formControlName="price"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea placeholder="Descreva o produto aqui..." formControlName="desc"></ion-textarea>
+    </ion-item>
+
+    <img [src]="imgSelected" *ngIf="imgSelected">
+
+    <ion-button expand="block" type="submit">Anunciar</ion-button>
+
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab-button (click)="takePicture()">
+        <ion-icon name="camera"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>
+  </form>
+</ion-content>

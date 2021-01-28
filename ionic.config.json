@@ -1,5 +1,7 @@
 {
   "name": "escambo",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
