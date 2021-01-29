@@ -26,42 +26,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
-    <img src="../../assets/download.jpg">
+  <ion-card *ngFor="let product of productsList" (click)="onProductClick(product)">
+    <img [src]="product?.img">
     <ion-card-header>
-      <ion-card-subtitle>Outros</ion-card-subtitle>
-      <ion-card-title>Telescópio</ion-card-title>
-      <ion-card-title>R$ 300,00</ion-card-title>
+      <ion-card-subtitle>{{typesList[product.type]}}</ion-card-subtitle>
+      <ion-card-title>{{product.title}}</ion-card-title>
+      <ion-card-title>{{product.price | currency : 'BRL' : true: '1.2-2'}}</ion-card-title>
     </ion-card-header>
-  
-    <ion-card-content>
-      Telescópio semi novo...
-    </ion-card-content>
-  </ion-card>
-  
-  <ion-card>
-    <img src="../../assets/LOT-0020-461_zoom1.jpg">
-    <ion-card-header>
-      <ion-card-subtitle>Acessórios de Vestuário</ion-card-subtitle>
-      <ion-card-title>Bolsa</ion-card-title>
-      <ion-card-title>R$ 50,00</ion-card-title>
-    </ion-card-header>
-  
-    <ion-card-content>
-      Bolsa rosa com carteira rosa...
-    </ion-card-content>
-  </ion-card>
 
-  <ion-card>
-    <img src="../../assets/images.jpg">
-    <ion-card-header>
-      <ion-card-subtitle>Comida</ion-card-subtitle>
-      <ion-card-title>Marmitex</ion-card-title>
-      <ion-card-title>R$ 20,00</ion-card-title>
-    </ion-card-header>
-  
     <ion-card-content>
-      Vendo marmitex com várias misturas...
+      {{product.desc}}
     </ion-card-content>
   </ion-card>
 </ion-content>

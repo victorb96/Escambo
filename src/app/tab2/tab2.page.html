@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngFor="let product of productsList">
+  <ion-card *ngFor="let product of productsList" (click)="onProductClick(product)">
     <img [src]="product?.img">
     <ion-card-header>
       <ion-card-subtitle>{{typesList[product.type]}}</ion-card-subtitle>

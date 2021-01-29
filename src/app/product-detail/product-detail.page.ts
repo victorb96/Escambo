@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
@@ -19,9 +19,22 @@ export class ProductDetailPage implements OnInit {
 
   imgSelected: any;
 
+  @Input() data: any;
+
   constructor(public modalCtrl: ModalController, private camera: Camera) { }
 
   ngOnInit() {
+    if(this.data){
+      this.form.setValue({
+        img: this.data.img,
+        title: this.data.title,
+        type: this.data.type,
+        price: this.data.price,
+        desc: this.data.desc
+      });
+      
+      this.imgSelected = this.form.value.img;
+    }
   }
 
   closeModal(){

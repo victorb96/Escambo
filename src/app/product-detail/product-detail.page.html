@@ -11,12 +11,12 @@
   <form [formGroup]="form" (ngSubmit)="onSaveClick()">  
     <ion-item>
       <ion-label position="floating">Titulo do anuncio</ion-label>
-      <ion-input placeholder="Ex.: Celular Galaxy S10" formControlName="title"></ion-input>
+      <ion-input placeholder="Ex.: Celular Galaxy S10" formControlName="title" [readonly]="data?.action == 'buy-product'"></ion-input>
     </ion-item>
   
-    <ion-item>
+    <ion-item *ngIf="data?.action != 'buy-product'">
       <ion-label position="floating">Tipo do produto</ion-label>
-      <ion-select interface="popover" formControlName="type">
+      <ion-select interface="popover" formControlName="type" >
         <ion-select-option value="0">Celulares</ion-select-option>
         <ion-select-option value="1">Móveis</ion-select-option>
         <ion-select-option value="2">Eletrodoméstico</ion-select-option>
@@ -33,18 +33,20 @@
   
     <ion-item>
       <ion-label position="floating">Valor</ion-label>
-      <ion-input currencyMask formControlName="price"></ion-input>
+      <ion-input currencyMask formControlName="price" [readonly]="data?.action == 'buy-product'"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-textarea placeholder="Descreva o produto aqui..." formControlName="desc"></ion-textarea>
+      <ion-textarea placeholder="Descreva o produto aqui..." formControlName="desc" *ngIf="data?.action != 'buy-product'"></ion-textarea>
     </ion-item>
 
     <img [src]="imgSelected" *ngIf="imgSelected">
 
-    <ion-button expand="block" type="submit">Anunciar</ion-button>
+    <ion-button expand="block" type="submit" *ngIf="data?.action != 'buy-product'">Anunciar</ion-button>
 
-    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-button expand="block" type="button" *ngIf="data?.action == 'buy-product'">Add ao carrinho</ion-button>
+
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed" *ngIf="data?.action != 'buy-product'">
       <ion-fab-button (click)="takePicture()">
         <ion-icon name="camera"></ion-icon>
       </ion-fab-button>

@@ -46,4 +46,13 @@ export class Tab2Page {
     await modal.present();
   }
 
+  async onProductClick(prod: any){
+    const modal = await this.modalCtrl.create({
+      component: ProductDetailPage,
+      componentProps: {'data': {...prod, action:'update-product'}}
+    });
+
+    modal.present();
+  }
+
 }
